@@ -1,1 +1,25 @@
-      <h1>{{ title() }} [David Ehiagwina] [S00271237]</h1>
+      <h1>{{ title() }} [David Ehiagwina] [S0027127]</h1> 
+      @for (movie of movies(); track movie;let i = $index; let isEven = $even;) { 
+      <ul>
+        <li [class.evenRow]="isEven" [class.oddRow]="!isEven">
+          <button (click)="addFavourite(movie)">Favourite</button> {{movie}}
+        </li>
+      </ul> } 
+      @empty {
+
+       }
+
+       <h1>Favourites</h1>
+       @if (favourites().length !== 0) {
+      <p style="padding: 1em;">{{favourites().length}} movies chosen</p>
+       } @else {
+        <p style="padding: 1em;">You have no movies chosen 🥲</p>
+       }
+      @for (movie of favourites(); track movie;let i = $index; let isEven = $even;) { 
+      <ul>
+        <li [class.evenRow]="isEven" [class.oddRow]="!isEven">
+          <button (click)="removeFavourites(i)">Delete</button> {{movie}}
+        </li>
+      </ul> } @empty {
+
+       }
